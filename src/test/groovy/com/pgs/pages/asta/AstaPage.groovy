@@ -1,4 +1,4 @@
-package com.pgs.pages
+package com.pgs.pages.asta
 
 import geb.Page
 
@@ -11,6 +11,13 @@ class AstaPage extends Page {
 
     static content = {
 
+        regularAppButton(wait: true) { $('a', href: 'http://testingcup.pgs-soft.com') }
+
+    }
+
+    def clickRegularAppButton() {
+        waitFor { regularAppButton.isDisplayed() }
+        regularAppButton.click()
     }
 
 

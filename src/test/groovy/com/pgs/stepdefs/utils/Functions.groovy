@@ -3,7 +3,7 @@ package com.pgs.stepdefs.utils
 
 class Functions {
 
-    def wait(interval){
+    def ensurePageCanBeRead(interval){
         sleep(interval)
     }
 
