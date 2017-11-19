@@ -8,6 +8,7 @@ import com.pgs.pages.PgsPage
 import com.pgs.pages.SelenidePage
 import com.pgs.pages.SeleniumPage
 import com.pgs.pages.asta.TestingCupEx6Page
+import com.pgs.pages.asta.TestingCupEx7Page
 import com.pgs.pages.asta.TestingCupEx8Page
 import com.pgs.pages.asta.TestingCupMainPage
 import com.pgs.stepdefs.utils.Functions
@@ -27,10 +28,13 @@ def seleniumPage = new SelenidePage()
 def gebPage = new GebPage()
 def testingCupMainPage = new TestingCupMainPage()
 def testingCupEx6Page = new TestingCupEx6Page()
+def testingCupEx7Page = new TestingCupEx7Page()
 def testingCupEx8Page = new TestingCupEx8Page()
 
 def functions = new Functions()
 def browser = new Browser()
+
+String productName, productPrice
 
 
 Given(~/^Google page is opened$/) { ->
@@ -95,6 +99,9 @@ Given(~/^User choose (\d+)th exercise$/) { int taskNumber ->
     if (taskNumber == 6) {
         at TestingCupEx6Page
         testingCupEx6Page = page
+    } else if (taskNumber == 7) {
+        at TestingCupEx7Page
+        testingCupEx7Page = page
     } else if (taskNumber == 8) {
         at TestingCupEx8Page
         testingCupEx8Page = page
@@ -121,6 +128,26 @@ Then(~/^User can log out$/) { ->
     testingCupEx6Page.clickLogoutButton()
     assertThat("User Login state is incorrect", testingCupEx6Page.ifUserIsLogged() == false)
     functions.ensurePageCanBeRead(2000)
+}
+
+When(~/^User add some product '(\d+)' times to basket by drag and drop action$/) { int quantity ->
+    productName = testingCupEx7Page.productsList.get(0).productName.text()
+    productPrice = testingCupEx7Page.productsList.get(0).productPrice.text().replace("Cena:", "").replace("zł", "").trim()
+
+    testingCupEx7Page.productsList.get(0).provideProductQuantity(quantity)
+    functions.ensurePageCanBeRead(1000)
+    testingCupEx7Page.productsList.get(0).dragAndDropProductToBasket()
+}
+
+Then(~/^Product will be added to basket$/) { ->
+    testingCupEx7Page.basketModule.checkIfProductAddedToBasket(productName)
+    functions.ensurePageCanBeRead(2000)
+}
+
+Then(~/^Total basket price will be calculated accordingly to products number '(\d+)'$/) { int quantity ->
+    def calculatedBasketPrice = Double.parseDouble(productPrice) * quantity
+    testingCupEx7Page.basketModule.checkBasketSummaryPriceCorrectness(calculatedBasketPrice.toString())
+    testingCupEx7Page.basketModule.checkBasketSummeryQuantityCorrectness(quantity.toString())
 }
 
 When(~/^User fill payment form with data '(.+?)', '(.+?)', '(.+?)', '(.+?)', '(.+?)', '(.+?)'$/) {

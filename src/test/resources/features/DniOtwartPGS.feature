@@ -29,6 +29,19 @@ Feature: Open days in PGS Software
       | true   | tester | 123-xyz  |
 
   @DniOtwartePgs
+  Scenario Outline: DniOtwartePgs - asta test add to basket
+    Given Asta main page is opened
+    And User navigate to regular app
+    And User choose 7th exercise
+    When User add some product '<quantity>' times to basket by drag and drop action
+    Then Product will be added to basket
+    And Total basket price will be calculated accordingly to products number '<quantity>'
+
+    Examples:
+      | repeat | quantity |
+      | true   | 3        |
+
+  @DniOtwartePgs
   Scenario Outline: DniOtwartePgs - asta test 8 card payment
     Given Asta main page is opened
     And User navigate to regular app
