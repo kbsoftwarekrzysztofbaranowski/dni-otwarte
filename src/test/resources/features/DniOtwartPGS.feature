@@ -1,17 +1,14 @@
 Feature: Open days in PGS Software
-  As an pgs Eployee
-  I want to present how tests are automated in our company using automated test
+  As an pgs Employee
+  I want to present how tests are automated in our company
   So that I will not have to explain everything on my own
 
   @DniOtwartePgs
-  Scenario Outline: DniOtwartePgs - technologies
+  Scenario: DniOtwartePgs - technologies
     Given Google page is opened
     When Welcome message will be presented by google search
     Then Most popular ui automation tools pages can be presented
 
-    Examples:
-      | repeat |
-      | true   |
 
   @DniOtwartePgs
   Scenario Outline: DniOtwartePgs - asta test 6 login
@@ -25,11 +22,11 @@ Feature: Open days in PGS Software
     And User can log out
 
     Examples:
-      | repeat | login  | password |
-      | true   | tester | 123-xyz  |
+      | login  | password |
+      | tester | 123-xyz  |
 
   @DniOtwartePgs
-  Scenario Outline: DniOtwartePgs - asta test add to basket
+  Scenario Outline: DniOtwartePgs - asta test 7 add to basket
     Given Asta main page is opened
     And User navigate to regular app
     And User choose 7th exercise
@@ -38,8 +35,8 @@ Feature: Open days in PGS Software
     And Total basket price will be calculated accordingly to products number '<quantity>'
 
     Examples:
-      | repeat | quantity |
-      | true   | 3        |
+      | quantity |
+      | 3        |
 
   @DniOtwartePgs
   Scenario Outline: DniOtwartePgs - asta test 8 card payment
@@ -51,15 +48,11 @@ Feature: Open days in PGS Software
     Then Transaction is confirmed
 
     Examples:
-      | repeat | cardName   | firstLastName  | cardNumber       | cvv | month   | year |
-      | true   | MasterCard | Tester Testowy | 5555555555554444 | 123 | October | 2020 |
+      | cardName   | firstLastName  | cardNumber       | cvv | month   | year |
+      | MasterCard | Tester Testowy | 5555555555554444 | 123 | October | 2020 |
 
   @DniOtwartePgs
-  Scenario Outline: DniOtwartePgs - pgs web page
+  Scenario: DniOtwartePgs - pgs web page
     Given Google page is opened
     When Please visit out web page info will be displayed
     Then PGS web page will be presented
-
-    Examples:
-      | repeat |
-      | true   |

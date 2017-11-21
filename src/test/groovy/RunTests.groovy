@@ -6,9 +6,10 @@ import org.junit.runner.RunWith
 @CucumberOptions(monochrome = true,
         features = "src/test/resources/features",
         glue = "src/test/groovy/com/pgs/stepdefs",
-        format = ["pretty", "html:build/reports/tests/cucumber/html", "json:build/reports/tests/cucumber.json"]
-//        , tags = ["@test"]
+        format = ["pretty", "html:build/reports/tests/cucumber/html", "json:build/reports/tests/cucumber.json"],
+        tags = ["@DniOtwartePgs"]
 )
+
 class RunTests {
 
 }

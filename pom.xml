@@ -56,7 +56,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <geb.build.baseUrl></geb.build.baseUrl>
-                        <geb.browser>chrome</geb.browser>
+                        <geb.browser>firefox</geb.browser>
                     </systemPropertyVariables>
                     <includes>
                         <include>${geb.tests}</include>
