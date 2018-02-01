@@ -9,6 +9,7 @@ def driverInstance
 driver = {
 
     switch (System.getProperty("geb.browser")) {
+
         case "chrome":
             Map<String, Object> prefs = new HashMap<String, Object>();
 
@@ -27,12 +28,14 @@ driver = {
             System.setProperty('webdriver.chrome.driver', 'src/binary/Chrome/chromedriver.exe')
             driverInstance = new ChromeDriver(options)
             break
+
         case "firefox":
             FirefoxOptions options = new FirefoxOptions()
             options.addArguments()
             System.setProperty('webdriver.gecko.driver', 'src/binary/Firefox/geckodriver.exe')
             driverInstance = new FirefoxDriver()
             break
+
         case "ie":
             System.setProperty('webdriver.ie.driver', 'src/binary/IE/IEDriverServer.exe')
             driverInstance = new InternetExplorerDriver()
