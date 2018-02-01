@@ -1,5 +1,5 @@
 package com.iat
 
 public class Config {
-  //comment
+  //comment long
 }
